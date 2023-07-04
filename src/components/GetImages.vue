@@ -1,10 +1,11 @@
 <template>
   <div>
     <!-- Ask the user for the image_id, normally this would not be what you make the user do -->
-    <input type="text" ref="image_id_input" />
+    <input type="text" placeholder="Image ID" ref="image_id_input" />
     <!-- Button for clicking -->
     <button @click="get_image">GET IMAGE</button>
     <div ref="image_container"></div>
+    <p ref="message"></p>
   </div>
 </template>
 
@@ -36,8 +37,10 @@ export default {
             `<img src="${src}">`
           );
         })
-        .catch((err) => {
-          err;
+        .catch(async (err) => {
+          // This function is odd. Because Axios is expecting a BLOB as a data type, we need to turn it into text to show the user the error
+          // Also, notice the async on the arrow function above
+          this.$refs[`message`].innerText = await err[`response`][`data`].text();
         });
     },
   },

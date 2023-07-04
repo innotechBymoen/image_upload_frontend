@@ -2,7 +2,7 @@
   <div>
     <!-- Add my HTML tags for collecting the user input -->
     <input type="file" ref="upload_file" />
-    <input type="text" ref="file_description" />
+    <input type="text" placeholder="Description" ref="file_description" />
     <!-- Add my button for clicking -->
     <button @click="upload_image">UPLOAD</button>
     <!-- Add a simple message to show the user what happened -->
